@@ -26,7 +26,10 @@ public class JwtUtil {
     @javax.annotation.PostConstruct
     public void validateSecret() {
         if (secret == null || secret.length() < 64) {
-            throw new IllegalStateException("JWT secret must be at least 64 characters (512 bits) for security");
+            throw new IllegalStateException(
+                "JWT secret must be at least 64 characters for HS512 security. " +
+                "Set JWT_SECRET environment variable with a strong random string."
+            );
         }
     }
     

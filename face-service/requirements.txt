@@ -7,4 +7,4 @@ onnxruntime==1.16.3
 scikit-learn==1.4.0
 pillow==10.3.0
 requests==2.32.3
-qdrant-client==1.7.0
+qdrant-client==1.9.0

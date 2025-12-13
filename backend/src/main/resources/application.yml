@@ -36,7 +36,7 @@ server:
 
 ifoto:
   jwt:
-    secret: ${JWT_SECRET:changeme-this-is-a-very-long-secret-key-for-jwt-token-generation-min-512-bits}
+    secret: ${JWT_SECRET}  # Required: Set in environment variables (minimum 64 characters)
     expiration: 86400000  # 24 hours in milliseconds
   
   storage:

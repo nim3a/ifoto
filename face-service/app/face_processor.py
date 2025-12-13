@@ -97,7 +97,7 @@ class FaceProcessor:
             results = []
             for face in faces:
                 results.append({
-                    'embedding': face.embedding,  # 512-dimensional vector
+                    'embedding': face.embedding,  # InsightFace buffalo_l produces 512-dimensional vectors
                     'bbox': face.bbox,
                     'det_score': face.det_score,
                     'landmark': face.landmark if hasattr(face, 'landmark') else None
