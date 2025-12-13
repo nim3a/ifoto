@@ -35,7 +35,7 @@ export class ApiService {
     return this.http.delete<T>(`${this.baseUrl}${endpoint}`, options);
   }
 
-  uploadFile<T>(endpoint: string, file: File, additionalData?: Record<string, string>): Observable<T> {
+  uploadFile<T>(endpoint: string, file: File, additionalData?: Record<string, string | Blob>): Observable<T> {
     const formData = new FormData();
     formData.append('file', file);
     
