@@ -30,7 +30,7 @@ public class AuthService {
         final String token = jwtUtil.generateToken(userDetails);
         
         User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ir.ifoto.exception.ResourceNotFoundException("User not found"));
         
         return new AuthResponse(token, user.getUsername(), user.getEmail(), user.getRole().name());
     }

@@ -23,10 +23,10 @@ public class EventService {
     @Transactional
     public EventResponse createEvent(EventRequest request, String username) {
         User photographer = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ir.ifoto.exception.ResourceNotFoundException("User not found"));
         
         if (eventRepository.existsBySlug(request.getSlug())) {
-            throw new RuntimeException("Event slug already exists");
+            throw new ir.ifoto.exception.DuplicateResourceException("Event slug already exists");
         }
         
         Event event = new Event();
@@ -49,7 +49,7 @@ public class EventService {
     
     public EventResponse getEventBySlug(String slug) {
         Event event = eventRepository.findBySlug(slug)
-                .orElseThrow(() -> new RuntimeException("Event not found"));
+                .orElseThrow(() -> new ir.ifoto.exception.ResourceNotFoundException("Event not found"));
         return mapToResponse(event);
     }
     
@@ -61,7 +61,7 @@ public class EventService {
     
     public List<EventResponse> getMyEvents(String username) {
         User photographer = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ir.ifoto.exception.ResourceNotFoundException("User not found"));
         return eventRepository.findByPhotographerId(photographer.getId()).stream()
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
@@ -70,7 +70,7 @@ public class EventService {
     @Transactional
     public EventResponse updateEvent(Long id, EventRequest request) {
         Event event = eventRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Event not found"));
+                .orElseThrow(() -> new ir.ifoto.exception.ResourceNotFoundException("Event not found"));
         
         event.setName(request.getName());
         event.setDescription(request.getDescription());

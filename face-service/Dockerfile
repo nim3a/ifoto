@@ -20,11 +20,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Create upload directory
-RUN mkdir -p /tmp/ifoto/uploads
+# Create upload directory with secure permissions
+RUN mkdir -p /var/ifoto/uploads && chmod 750 /var/ifoto/uploads
 
 # Create non-root user
-RUN useradd -m -u 1000 ifoto && chown -R ifoto:ifoto /app /tmp/ifoto
+RUN useradd -m -u 1000 ifoto && chown -R ifoto:ifoto /app /var/ifoto
 USER ifoto
 
 EXPOSE 5000

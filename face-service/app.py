@@ -26,8 +26,8 @@ CORS(app)
 
 # Configuration
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max file size
-app.config['UPLOAD_FOLDER'] = os.getenv('UPLOAD_FOLDER', '/tmp/ifoto/uploads')
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+app.config['UPLOAD_FOLDER'] = os.getenv('UPLOAD_FOLDER', '/var/ifoto/uploads')
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True, mode=0o750)
 
 # Initialize services
 face_processor = FaceProcessor()
@@ -77,9 +77,9 @@ def detect_faces():
             'face_count': len(faces),
             'faces': [
                 {
-                    'bbox': face['bbox'].tolist(),
-                    'confidence': float(face['det_score']),
-                    'landmarks': face['landmark'].tolist() if 'landmark' in face else None
+                    'bbox': face.bbox.tolist(),
+                    'confidence': float(face.det_score),
+                    'landmarks': face.landmark.tolist() if hasattr(face, 'landmark') and face.landmark is not None else None
                 }
                 for face in faces
             ]

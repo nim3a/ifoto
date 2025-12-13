@@ -23,6 +23,13 @@ public class JwtUtil {
     @Value("${ifoto.jwt.expiration}")
     private Long expiration;
     
+    @javax.annotation.PostConstruct
+    public void validateSecret() {
+        if (secret == null || secret.length() < 64) {
+            throw new IllegalStateException("JWT secret must be at least 64 characters (512 bits) for security");
+        }
+    }
+    
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
