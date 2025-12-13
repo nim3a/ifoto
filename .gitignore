@@ -1,0 +1,70 @@
+# Java / Maven
+backend/target/
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# Python
+face-service/__pycache__/
+face-service/*.pyc
+face-service/*.pyo
+face-service/*.pyd
+face-service/.Python
+face-service/env/
+face-service/venv/
+face-service/.venv
+face-service/pip-log.txt
+face-service/pip-delete-this-directory.txt
+face-service/.pytest_cache/
+face-service/*.egg-info/
+
+# Node / Angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Docker
+docker/data/
+docker/volumes/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Backup files
+*.bak
+*.backup
+
+# Storage
+storage/
+uploads/

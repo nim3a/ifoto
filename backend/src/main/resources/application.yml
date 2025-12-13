@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: ifoto-backend
+  
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:ifoto}
+    username: ${DB_USERNAME:ifoto}
+    password: ${DB_PASSWORD:ifoto}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+  
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 500MB
+      enabled: true
+
+server:
+  port: ${SERVER_PORT:8080}
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+
+ifoto:
+  jwt:
+    secret: ${JWT_SECRET:changeme-this-is-a-very-long-secret-key-for-jwt-token-generation-min-512-bits}
+    expiration: 86400000  # 24 hours in milliseconds
+  
+  storage:
+    type: ${STORAGE_TYPE:minio}  # minio or local
+    minio:
+      endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
+      access-key: ${MINIO_ACCESS_KEY:minioadmin}
+      secret-key: ${MINIO_SECRET_KEY:minioadmin}
+      bucket-name: ${MINIO_BUCKET:ifoto}
+    local:
+      base-path: ${LOCAL_STORAGE_PATH:/var/ifoto/storage}
+  
+  face-service:
+    url: ${FACE_SERVICE_URL:http://localhost:5000}
+    timeout: 60000  # 60 seconds
+  
+  vector-db:
+    qdrant:
+      host: ${QDRANT_HOST:localhost}
+      port: ${QDRANT_PORT:6333}
+      collection-name: ${QDRANT_COLLECTION:face_embeddings}
+
+logging:
+  level:
+    root: INFO
+    ir.ifoto: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
