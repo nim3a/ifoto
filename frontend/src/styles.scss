@@ -9,6 +9,8 @@
 html, body {
   height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -27,4 +29,10 @@ body {
 
 .text-center {
   text-align: center;
+}
+
+/* RTL Support - can be enabled with [dir="rtl"] on html tag */
+[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
 }
