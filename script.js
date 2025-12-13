@@ -21,7 +21,7 @@ window.addEventListener('scroll', () => {
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 200) {
+        if (window.scrollY >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
@@ -122,6 +122,11 @@ function resetUpload() {
     verificationResult.style.display = 'none';
 }
 
+// Constants for verification
+const AUTHENTICITY_THRESHOLD = 0.2; // 80% chance of being authentic
+const MIN_CONFIDENCE_LEVEL = 95;
+const CONFIDENCE_RANGE = 5;
+
 // Verify button functionality
 if (verifyBtn) {
     verifyBtn.addEventListener('click', verifyImage);
@@ -142,7 +147,7 @@ function verifyImage() {
 
 function showVerificationResult() {
     // Simulate verification result (in real app, this would come from backend)
-    const isAuthentic = Math.random() > 0.2; // 80% chance of being authentic
+    const isAuthentic = Math.random() > AUTHENTICITY_THRESHOLD;
     
     const resultIcon = document.getElementById('resultIcon');
     const resultTitle = document.getElementById('resultTitle');
@@ -162,7 +167,7 @@ function showVerificationResult() {
         
         // Generate random verification details
         const uploadDate = new Date().toLocaleDateString('fa-IR');
-        const verificationId = 'VER-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        const verificationId = 'VER-' + Math.random().toString(36).substring(2, 11).toUpperCase();
         const hashCode = generateHash();
         
         resultDetails.innerHTML = `
@@ -170,7 +175,7 @@ function showVerificationResult() {
             <p><strong>تاریخ بررسی:</strong> ${uploadDate}</p>
             <p><strong>کد هش:</strong> <code style="font-size: 0.875rem; background: #F3F4F6; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">${hashCode}</code></p>
             <p><strong>وضعیت:</strong> <span style="color: #10B981; font-weight: 600;">✓ تأیید شده</span></p>
-            <p><strong>سطح اطمینان:</strong> ${Math.floor(Math.random() * 5) + 95}٪</p>
+            <p><strong>سطح اطمینان:</strong> ${Math.floor(Math.random() * CONFIDENCE_RANGE) + MIN_CONFIDENCE_LEVEL}٪</p>
         `;
     } else {
         resultIcon.innerHTML = `
