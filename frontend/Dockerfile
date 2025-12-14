@@ -18,8 +18,8 @@ RUN npm run build
 # Runtime stage with Nginx
 FROM nginx:alpine
 
-# Copy built files from build stage
-COPY --from=build /app/dist/ifoto-frontend /usr/share/nginx/html
+# Copy built files from build stage (Angular 17 outputs to browser subdirectory)
+COPY --from=build /app/dist/ifoto-frontend/browser /usr/share/nginx/html
 
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
