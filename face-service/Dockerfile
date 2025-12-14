@@ -3,8 +3,14 @@ FROM python:3.11-slim-bookworm
 
 WORKDIR /app
 
-# Install system dependencies
+# ✅ Install build + runtime dependencies
 RUN apt-get update && apt-get install -y \
+    build-essential \
+    gcc \
+    g++ \
+    make \
+    cmake \
+    python3-dev \
     libgl1 \
     libglib2.0-0 \
     libsm6 \
@@ -21,13 +27,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create upload directory with secure permissions
-RUN mkdir -p /var/ifoto/uploads && chmod 750 /var/ifoto/uploads
+RUN mkdir -p /var/ifoto/uploads \
+    && chmod 750 /var/ifoto/uploads
 
 # Create non-root user
-RUN useradd -m -u 1000 ifoto && chown -R ifoto:ifoto /app /var/ifoto
+RUN useradd -m -u 1000 ifoto \
+    && chown -R ifoto:ifoto /app /var/ifoto
+
 USER ifoto
 
 EXPOSE 5000
 
-# Run the application
 CMD ["python", "app.py"]

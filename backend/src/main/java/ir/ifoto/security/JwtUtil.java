@@ -23,7 +23,7 @@ public class JwtUtil {
     @Value("${ifoto.jwt.expiration}")
     private Long expiration;
     
-    @javax.annotation.PostConstruct
+    @jakarta.annotation.PostConstruct
     public void validateSecret() {
         if (secret == null || secret.length() < 64) {
             throw new IllegalStateException(
