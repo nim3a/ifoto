@@ -95,6 +95,17 @@ docker-compose ps
 - [API Documentation](docs/API.md)
 - [Development Guide](docs/DEVELOPMENT.md)
 
+#### 📊 Project Audit (December 2024)
+
+Comprehensive technical audit assessing MVP readiness:
+
+- **[Start Here: Audit Index](AUDIT_INDEX.md)** - Navigation guide for all audit documents
+- [Executive Summary](AUDIT_COMPLETE.md) - For product owners (5 min read)
+- [Project Management View](AUDIT_SUMMARY.md) - Roadmap & tracking (10 min read)
+- [Technical Deep-Dive](PROJECT_AUDIT.md) - For developers (30 min read)
+
+**Quick Findings:** Overall 30-35% MVP ready. Excellent foundation, 6-8 weeks to functional MVP.
+
 ### System Requirements
 
 #### Minimum (CPU-only)
