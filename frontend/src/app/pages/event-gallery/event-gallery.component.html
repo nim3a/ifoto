@@ -1,0 +1,59 @@
+<div class="gallery-container" dir="rtl">
+  <div class="gallery-header">
+    <h1 class="gallery-title">معرض الصور</h1>
+    <button 
+      mat-raised-button 
+      color="primary" 
+      (click)="navigateToSearch()"
+      class="search-button">
+      <mat-icon>search</mat-icon>
+      البحث بالوجه
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p class="loading-text">جاري تحميل الصور...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="error-container">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <p class="error-text">{{ error }}</p>
+    <button mat-raised-button color="primary" (click)="loadPhotos()">
+      إعادة المحاولة
+    </button>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && !error && photos.length === 0" class="empty-container">
+    <mat-icon class="empty-icon">photo_library</mat-icon>
+    <h2 class="empty-title">لا توجد صور</h2>
+    <p class="empty-text">لم يتم رفع أي صور لهذا الحدث بعد.</p>
+  </div>
+
+  <!-- Gallery Grid -->
+  <div *ngIf="!loading && !error && photos.length > 0" class="photo-grid">
+    <mat-card *ngFor="let photo of photos" class="photo-card">
+      <div class="photo-wrapper">
+        <img 
+          [src]="getPhotoUrl(photo.storagePath)" 
+          [alt]="photo.fileName"
+          class="photo-image"
+          loading="lazy">
+      </div>
+      <mat-card-content class="photo-info">
+        <div class="photo-meta">
+          <mat-chip-set>
+            <mat-chip>
+              <mat-icon>face</mat-icon>
+              {{ photo.faceCount }} وجه
+            </mat-chip>
+          </mat-chip-set>
+          <span class="photo-date">{{ photo.uploadedAt | date:'short' }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

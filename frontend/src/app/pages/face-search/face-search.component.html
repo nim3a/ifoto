@@ -1,0 +1,109 @@
+<div class="search-container" dir="rtl">
+  <div class="search-header">
+    <h1 class="search-title">البحث بالوجه</h1>
+    <button mat-button (click)="navigateToGallery()">
+      <mat-icon>arrow_forward</mat-icon>
+      العودة للمعرض
+    </button>
+  </div>
+
+  <mat-card class="upload-card">
+    <mat-card-content>
+      <!-- Upload Section -->
+      <div *ngIf="!previewUrl" class="upload-section">
+        <mat-icon class="upload-icon">cloud_upload</mat-icon>
+        <h2 class="upload-title">قم بتحميل صورة سيلفي</h2>
+        <p class="upload-description">
+          سنبحث عن جميع الصور التي تحتوي على وجهك في هذا الحدث
+        </p>
+        <input
+          type="file"
+          #fileInput
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          style="display: none">
+        <button 
+          mat-raised-button 
+          color="primary" 
+          (click)="fileInput.click()"
+          class="upload-button">
+          <mat-icon>photo_camera</mat-icon>
+          اختر صورة
+        </button>
+        <p class="upload-hint">الحد الأقصى: 10 ميجابايت</p>
+      </div>
+
+      <!-- Preview Section -->
+      <div *ngIf="previewUrl && !searching" class="preview-section">
+        <div class="preview-wrapper">
+          <img [src]="previewUrl" alt="Preview" class="preview-image">
+        </div>
+        <div class="preview-actions">
+          <button 
+            mat-raised-button 
+            color="primary" 
+            (click)="searchByFace()"
+            class="search-action-button">
+            <mat-icon>search</mat-icon>
+            ابحث الآن
+          </button>
+          <button 
+            mat-stroked-button 
+            (click)="clearSelection()"
+            class="clear-button">
+            <mat-icon>close</mat-icon>
+            إلغاء
+          </button>
+        </div>
+      </div>
+
+      <!-- Searching State -->
+      <div *ngIf="searching" class="searching-section">
+        <mat-spinner diameter="60"></mat-spinner>
+        <p class="searching-text">جاري البحث عن وجهك في الصور...</p>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Results Section -->
+  <div *ngIf="hasSearched && !searching && searchResults.length > 0" class="results-section">
+    <h2 class="results-title">
+      <mat-icon>check_circle</mat-icon>
+      تم العثور على {{ searchResults.length }} صورة
+    </h2>
+
+    <div class="results-grid">
+      <mat-card *ngFor="let match of searchResults" class="result-card">
+        <div class="result-image-wrapper">
+          <img 
+            [src]="getPhotoUrl(match.photoUrl)" 
+            alt="Match"
+            class="result-image"
+            loading="lazy">
+          <div class="similarity-badge">
+            <mat-chip [color]="getSimilarityColor(match.similarity)">
+              {{ getSimilarityPercentage(match.similarity) }}%
+            </mat-chip>
+          </div>
+        </div>
+        <mat-card-content class="result-info">
+          <div class="result-meta">
+            <span class="result-label">معرف الصورة:</span>
+            <span class="result-value">#{{ match.photoId }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- No Results -->
+  <div *ngIf="hasSearched && !searching && searchResults.length === 0" class="no-results">
+    <mat-icon class="no-results-icon">search_off</mat-icon>
+    <h2 class="no-results-title">لا توجد نتائج</h2>
+    <p class="no-results-text">لم يتم العثور على صور مطابقة. جرب صورة أخرى.</p>
+    <button mat-raised-button color="primary" (click)="clearSelection()">
+      تحميل صورة جديدة
+    </button>
+  </div>
+</div>
