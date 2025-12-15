@@ -20,11 +20,34 @@
 
 ### Overview
 
-ifoto is a comprehensive, self-hosted event photography platform designed for B2B event photography services. It enables professional photographers to manage large-scale events (marathons, conferences, weddings) with thousands of photos, while attendees can easily find their photos using advanced face recognition technology.
+ifoto is a self-hosted, enterprise-grade event photography platform
+designed for B2B photography services in the Persian/Iranian market.
+
+The project currently provides a **production-ready architectural foundation**
+with a state-of-the-art face recognition engine, security, and infrastructure.
+
+⚠️ Important:
+This repository is NOT yet a fully working MVP.
+The current focus is on completing end-to-end integration between existing services.
+
+### Project Status (Honest)
+
+| Area                     | Status |
+|--------------------------|--------|
+| Infrastructure (Docker)  | ✅ Complete |
+| Face Recognition Engine  | ✅ Production-ready |
+| Backend Core APIs        | ✅ Implemented |
+| Photo Upload Pipeline    | ❌ Missing |
+| Face Search Integration | ❌ Missing |
+| Frontend ↔ Backend APIs | ❌ Mocked |
+| Working MVP              | ⏳ ~30–35% |
+
+This project represents a **high-quality foundation**
+that requires integration work to become a usable MVP.
 
 ### Key Features
 
-#### Phase 1 (Current)
+#### Phase 1 (Foundation – In Progress)
 - 🎯 **Event-Based Photo Galleries**: Organize photos by events with metadata
 - 🔍 **AI-Powered Face Recognition**: Find photos by uploading a selfie
 - 📱 **Mobile-First Design**: Responsive UI optimized for all devices
@@ -161,15 +184,24 @@ This is proprietary software. See [LICENSE](LICENSE) for details.
 
 ---
 
+Note: Several Phase 1 features are architecturally prepared
+but not yet wired together end-to-end.
+
 ## فارسی
 
 ### معرفی
+ifoto یک پلتفرم عکاسی رویداد در سطح سازمانی و خود-میزبان است که برای خدمات عکاسی B2B در بازار فارسی/ایرانی طراحی شده است.
 
-ifoto یک پلتفرم حرفه‌ای و خودمیزبان برای عکاسی رویدادها است که برای خدمات عکاسی B2B طراحی شده است. این پلتفرم به عکاسان حرفه‌ای امکان می‌دهد رویدادهای بزرگ (ماراتن، کنفرانس، عروسی) با هزاران عکس را مدیریت کنند و به شرکت‌کنندگان اجازه می‌دهد با استفاده از تکنولوژی تشخیص چهره عکس‌های خود را پیدا کنند.
+این پروژه در حال حاضر یک **پایه معماری آماده برای تولید** با موتور تشخیص چهره، امنیت و زیرساخت پیشرفته ارائه می‌دهد.
+
+⚠️ مهم:
+این مخزن هنوز یک MVP کاملاً کاربردی نیست.
+
+تمرکز فعلی بر تکمیل ادغام سرتاسری بین سرویس‌های موجود است.
 
 ### ویژگی‌های کلیدی
 
-#### فاز 1 (فعلی)
+#### فاز 1 (بنیاد - در حال انجام)
 - 🎯 **گالری عکس مبتنی بر رویداد**: سازماندهی عکس‌ها بر اساس رویدادها
 - 🔍 **تشخیص چهره با هوش مصنوعی**: یافتن عکس‌ها با آپلود سلفی
 - 📱 **طراحی موبایل‌محور**: رابط کاربری واکنش‌گرا برای همه دستگاه‌ها
@@ -180,6 +212,20 @@ ifoto یک پلتفرم حرفه‌ای و خودمیزبان برای عکاس�
 - 🖼️ **پشتیبانی از واترمارک**: افزودن واترمارک و لوگوی اسپانسر
 - ⚡ **کارایی بالا**: پردازش 5,000 تا 30,000 عکس در هر رویداد
 - 🎨 **رابط کاربری مینیمال**: طراحی ساده و تمیز
+
+### وضعیت پروژه (صادقانه)
+
+| مساحت | وضعیت |
+|--------------------------|--------|
+| زیرساخت (داکر) | ✅ کامل |
+| موتور تشخیص چهره | ✅ آماده تولید |
+| APIهای هسته بک‌اند | ✅ پیاده‌سازی شده |
+| خط لوله آپلود عکس | ❌ موجود نیست |
+| ادغام جستجوی چهره | ❌ موجود نیست |
+| APIهای فرانت‌اند ↔ بک‌اند | ❌ شبیه‌سازی شده |
+| MVP در حال کار | ⏳ ~30-35% |
+
+این پروژه نشان‌دهنده یک **پایه با کیفیت بالا** است که برای تبدیل شدن به یک MVP قابل استفاده، نیاز به کار ادغام دارد.
 
 ### پشته فناوری
 
@@ -303,6 +349,8 @@ ifoto/
 - **وب‌سایت**: https://ifoto.ir
 - **ایمیل**: support@ifoto.ir
 - **GitHub Issues**: https://github.com/nim3a/ifoto/issues
+
+توجه: چندین ویژگی فاز ۱ از نظر معماری آماده شده‌اند، اما هنوز به صورت سرتاسری به هم متصل نشده‌اند.
 
 ---
 

@@ -1,5 +1,28 @@
 # ifoto Implementation Summary
 
+⚠️ IMPORTANT STATUS CLARIFICATION
+
+This document describes the implemented ARCHITECTURAL FOUNDATION
+and completed technical components of the ifoto platform.
+
+While infrastructure, security, face recognition engine, and service foundations
+are production-grade and enterprise-ready, the system is NOT yet a fully working MVP.
+
+Current Reality:
+- Architectural & Infrastructure Readiness: ✅ 90–100%
+- Face Recognition Engine: ✅ Production-ready
+- Backend Core (Auth, Events, Security): ✅ Implemented
+- Frontend UI: ⚠️ Structure exists, APIs mocked
+- End-to-End Integration (Upload → Process → Search → Gallery): ❌ Missing
+
+▶ Real working MVP completeness: ~30–35%
+
+This project currently represents a **production-grade foundation**
+that requires integration work to become a usable MVP.
+
+The most critical missing part is the end-to-end photo pipeline:
+Upload → Storage → Face Extraction → Search → Gallery Display
+
 ## Project Overview
 
 **ifoto** is a production-ready, self-hosted event photography platform with advanced face recognition capabilities, designed specifically for the Persian/Iranian market. This implementation addresses all Phase 1 requirements with enterprise-grade quality.
