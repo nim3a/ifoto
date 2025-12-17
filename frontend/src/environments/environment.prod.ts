@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: '',
-  faceServiceUrl: ''
+  apiUrl: '/api',
+  faceServiceUrl: '/face-api'
 };

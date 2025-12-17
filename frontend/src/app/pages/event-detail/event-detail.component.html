@@ -1,0 +1,210 @@
+<app-header></app-header>
+
+<main class="event-detail-page">
+  <!-- Loading State -->
+  <section class="content-section" *ngIf="isLoading">
+    <div class="container">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>در حال بارگذاری...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Error State -->
+  <section class="content-section" *ngIf="error && !isLoading">
+    <div class="container">
+      <div class="error">
+        <p>{{ error }}</p>
+        <button class="btn btn-primary" (click)="goBack()">بازگشت به رویدادها</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Content -->
+  <div *ngIf="!isLoading && !error && event">
+    <!-- Event Header -->
+    <section class="event-header">
+      <div class="container">
+        <button class="back-btn" (click)="goBack()">
+          <span>←</span>
+          بازگشت به رویدادها
+        </button>
+        <h1 class="event-title">{{ event.title }}</h1>
+        <div class="event-meta">
+          <span class="meta-item" *ngIf="event.eventDate">
+            📅 {{ event.eventDate | date: 'dd MMMM yyyy' }}
+          </span>
+          <span class="meta-item" *ngIf="event.location">
+            📍 {{ event.location }}
+          </span>
+          <span class="meta-item">
+            📷 {{ event.photos.length }} عکس
+          </span>
+          <span class="meta-item" *ngIf="event.category">
+            🏷️ {{ event.category }}
+          </span>
+        </div>
+        <p class="event-description" *ngIf="event.description">
+          {{ event.description }}
+        </p>
+      </div>
+    </section>
+
+    <!-- Search Tabs -->
+    <section class="search-tabs-section">
+      <div class="container">
+        <div class="tabs">
+          <button 
+            class="tab"
+            [class.active]="selectedTab === 'all'"
+            (click)="selectTab('all')">
+            همه عکس‌ها
+          </button>
+          <button 
+            class="tab"
+            [class.active]="selectedTab === 'search'"
+            (click)="selectTab('search')">
+            جستجو با متن/شماره
+          </button>
+          <button 
+            class="tab"
+            [class.active]="selectedTab === 'face'"
+            (click)="selectTab('face')">
+            جستجو با چهره
+          </button>
+        </div>
+
+        <!-- Search by Text/Number -->
+        <div class="search-content" *ngIf="selectedTab === 'search'">
+          <div class="search-box">
+            <input 
+              type="text" 
+              [(ngModel)]="searchQuery"
+              (keyup.enter)="onSearchPhotos()"
+              placeholder="نام فایل، شماره یا اطلاعات دیگر را جستجو کنید..."
+              class="search-input">
+            <button class="search-btn" (click)="onSearchPhotos()">
+              جستجو
+            </button>
+          </div>
+        </div>
+
+        <!-- Search by Face -->
+        <div class="search-content" *ngIf="selectedTab === 'face'">
+          <div class="face-upload">
+            <input 
+              type="file" 
+              #faceInput
+              accept="image/*"
+              (change)="onFileSelected($event)"
+              style="display: none;">
+            <button class="upload-face-btn" (click)="triggerFileInput(faceInput)">
+              <span class="icon">📸</span>
+              <span>تصویر چهره خود را آپلود کنید</span>
+            </button>
+            <p class="upload-help">
+              یک عکس از خود را انتخاب کنید تا عکس‌هایی که در آن هستید پیدا شوند
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photos Grid -->
+    <section class="photos-section">
+      <div class="container">
+        <!-- Results Info -->
+        <div class="results-info" *ngIf="selectedTab !== 'all'">
+          <p>{{ filteredPhotos.length }} عکس یافت شد</p>
+          <button class="clear-search" (click)="selectTab('all')">
+            نمایش همه
+          </button>
+        </div>
+
+        <!-- Empty State for Search -->
+        <div class="empty" *ngIf="filteredPhotos.length === 0 && selectedTab !== 'all'">
+          <p>هیچ عکسی با این جستجو یافت نشد.</p>
+        </div>
+
+        <!-- Photos Grid -->
+        <div class="photos-grid" *ngIf="filteredPhotos.length > 0">
+          <div *ngFor="let photo of filteredPhotos; let i = index" 
+               class="photo-item"
+               (click)="openLightbox(photo, i)">
+            <img [src]="photo.thumbnailUrl" 
+                 [alt]="photo.fileName"
+                 loading="lazy">
+            <div class="photo-overlay">
+              <span class="view-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" *ngIf="selectedPhoto" (click)="closeLightbox()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button class="lightbox-close" (click)="closeLightbox()">×</button>
+      
+      <button class="lightbox-nav lightbox-prev" 
+              (click)="previousPhoto()"
+              [disabled]="selectedPhotoIndex === 0">
+        ←
+      </button>
+
+      <div class="lightbox-image-container">
+        <img [src]="selectedPhoto.url" [alt]="selectedPhoto.fileName">
+        <div class="lightbox-info">
+          <p class="photo-counter">
+            {{ selectedPhotoIndex + 1 }} / {{ filteredPhotos.length }}
+          </p>
+          <p class="photo-name">{{ selectedPhoto.fileName }}</p>
+          <p class="photo-date" *ngIf="selectedPhoto.capturedAt">
+            {{ selectedPhoto.capturedAt | date: 'dd MMMM yyyy - HH:mm' }}
+          </p>
+          <button class="download-btn">
+            دانلود عکس
+          </button>
+        </div>
+      </div>
+
+      <button class="lightbox-nav lightbox-next" 
+              (click)="nextPhoto()"
+              [disabled]="selectedPhotoIndex === filteredPhotos.length - 1">
+        →
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>درباره آی‌فوتو</h4>
+          <p>پلتفرم هوشمند برای مدیریت و اشتراک‌گذاری تصاویر رویدادها</p>
+        </div>
+        <div class="footer-section">
+          <h4>لینک‌های مفید</h4>
+          <ul>
+            <li><a routerLink="/">خانه</a></li>
+            <li><a routerLink="/about">درباره ما</a></li>
+            <li><a routerLink="/gallery">گالری</a></li>
+            <li><a routerLink="/find-photo">پیدا کردن عکس</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>تماس با ما</h4>
+          <p>ایمیل: info&#64;ifoto.ir</p>
+          <p>تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; ۱۴۰۳ آی‌فوتو. تمامی حقوق محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+</main>

@@ -1,0 +1,159 @@
+<app-header></app-header>
+
+<main class="event-list-page">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">پیدا کردن عکس</h1>
+      <p class="hero-subtitle">رویداد خود را جستجو کنید و عکس‌های خود را پیدا کنید</p>
+      
+      <!-- Search Box -->
+      <div class="search-box">
+        <input 
+          type="text" 
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="onSearch()"
+          placeholder="نام رویداد، تاریخ یا محل را جستجو کنید..."
+          class="search-input">
+        <button class="search-btn" (click)="onSearch()">
+          جستجو
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loading State -->
+  <section class="events-section" *ngIf="isLoading">
+    <div class="container">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>در حال بارگذاری...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Error State -->
+  <section class="events-section" *ngIf="error && !isLoading">
+    <div class="container">
+      <div class="error">
+        <p>{{ error }}</p>
+        <button class="btn btn-primary" (click)="loadEvents()">تلاش مجدد</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Empty State -->
+  <section class="events-section" *ngIf="!isLoading && !error && events.length === 0">
+    <div class="container">
+      <div class="empty">
+        <p>{{ searchQuery ? 'رویدادی با این جستجو یافت نشد.' : 'هیچ رویدادی یافت نشد.' }}</p>
+        <button class="btn btn-secondary" *ngIf="searchQuery" (click)="searchQuery = ''; onSearch()">
+          نمایش همه رویدادها
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Grid -->
+  <section class="events-section" *ngIf="!isLoading && !error && events.length > 0">
+    <div class="container">
+      <!-- Results Info -->
+      <div class="results-info" *ngIf="searchQuery">
+        <p>{{ totalItems }} رویداد یافت شد برای "{{ searchQuery }}"</p>
+        <button class="clear-search" (click)="searchQuery = ''; onSearch()">
+          پاک کردن جستجو
+        </button>
+      </div>
+
+      <div class="events-grid">
+        <a *ngFor="let event of events" 
+           [routerLink]="['/find-photo', event.id]"
+           class="event-card">
+          <div class="event-image">
+            <img [src]="event.coverImageUrl" 
+                 [alt]="event.title"
+                 loading="lazy">
+            <div class="event-badge" *ngIf="event.category">
+              {{ event.category }}
+            </div>
+          </div>
+          <div class="event-info">
+            <h3 class="event-title">{{ event.title }}</h3>
+            <div class="event-meta">
+              <span class="meta-item">
+                📅 {{ event.eventDate | date: 'dd MMMM yyyy' }}
+              </span>
+              <span class="meta-item" *ngIf="event.location">
+                📍 {{ event.location }}
+              </span>
+            </div>
+            <p class="event-description" *ngIf="event.description">
+              {{ event.description }}
+            </p>
+            <div class="event-stats">
+              <span class="stat-item">
+                📷 {{ event.photoCount }} عکس
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" *ngIf="totalPages > 1">
+        <button 
+          class="pagination-btn"
+          [disabled]="currentPage === 1"
+          (click)="onPageChange(currentPage - 1)">
+          قبلی
+        </button>
+        
+        <div class="pagination-numbers">
+          <button 
+            *ngFor="let page of pages"
+            class="pagination-number"
+            [class.active]="page === currentPage"
+            (click)="onPageChange(page)">
+            {{ page }}
+          </button>
+        </div>
+
+        <button 
+          class="pagination-btn"
+          [disabled]="currentPage === totalPages"
+          (click)="onPageChange(currentPage + 1)">
+          بعدی
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>درباره آی‌فوتو</h4>
+          <p>پلتفرم هوشمند برای مدیریت و اشتراک‌گذاری تصاویر رویدادها</p>
+        </div>
+        <div class="footer-section">
+          <h4>لینک‌های مفید</h4>
+          <ul>
+            <li><a routerLink="/">خانه</a></li>
+            <li><a routerLink="/about">درباره ما</a></li>
+            <li><a routerLink="/gallery">گالری</a></li>
+            <li><a routerLink="/find-photo">پیدا کردن عکس</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>تماس با ما</h4>
+          <p>ایمیل: info&#64;ifoto.ir</p>
+          <p>تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; ۱۴۰۳ آی‌فوتو. تمامی حقوق محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+</main>

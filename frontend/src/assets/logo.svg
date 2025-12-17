@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40">
+  <defs>
+    <style> .t{font-family: Vazirmatn, Arial, sans-serif; font-weight:700; font-size:20px; fill:#2C1810;} .s{fill:#F4B942;} </style>
+  </defs>
+  <g>
+    <g transform="translate(0,4)">
+      <polygon class="s" points="8,0 14,8 8,16 0,16 0,0"/>
+    </g>
+    <text class="t" x="40" y="24">آی‌فوتو</text>
+  </g>
+</svg>

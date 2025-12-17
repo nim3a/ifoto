@@ -1,0 +1,281 @@
+<!-- Header Navigation -->
+<app-header></app-header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>سامانه هوشمند ذخیره و یافتن عکس</h1>
+        <p>با استفاده از هوش مصنوعی، عکس‌های رویداد خود را مدیریت کنید و با جستجوی چهره، به سرعت عکس‌های دلخواه را پیدا کنید.</p>
+        <a href="#features" class="btn btn-primary">شروع کنید</a>
+      </div>
+      <div class="hero-images">
+        <div class="image-grid">
+          <div class="grid-item large">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&h=300&fit=crop" alt="عکس رویداد">
+          </div>
+          <div class="grid-item">
+            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=200&h=150&fit=crop" alt="عکس رویداد">
+          </div>
+          <div class="grid-item">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=200&h=150&fit=crop" alt="عکس رویداد">
+          </div>
+          <div class="grid-item">
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=200&h=200&fit=crop" alt="عکس رویداد">
+          </div>
+          <div class="grid-item">
+            <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=200&h=200&fit=crop" alt="عکس رویداد">
+          </div>
+          <div class="grid-item tall">
+            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=200&h=300&fit=crop" alt="عکس رویداد">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" *ngFor="let stat of stats">
+        <h2 class="stat-value">{{ stat.value }}</h2>
+        <p class="stat-label">{{ stat.label }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Overview Section -->
+<section class="features-overview" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">آی‌فوتو</span>
+      <h2>مدیریت عکس‌های رویداد با جستجوی پیشرفته</h2>
+      <p>سامانه‌ای هوشمند برای ذخیره، مدیریت و جستجوی عکس‌های رویدادهای شما با استفاده از فناوری تشخیص چهره و هوش مصنوعی</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card" *ngFor="let feature of features">
+        <div class="feature-icon">
+          <img [src]="feature.icon" alt="{{feature.title}}" />
+        </div>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+    
+    <div class="cta-center">
+      <a href="#" class="btn btn-outline">ادامه مطلب</a>
+      <a href="#contact" class="btn btn-primary">تماس با ما</a>
+    </div>
+  </div>
+</section>
+
+<!-- Large Image Section -->
+<section class="photographer-showcase">
+  <div class="photographer-image">
+    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&h=600&fit=crop" alt="عکاس حرفه‌ای">
+    <div class="image-overlay">
+      <div class="overlay-content">
+        <span class="overlay-icon">✨</span>
+        <h3>کیفیت حرفه‌ای</h3>
+      </div>
+      <div class="overlay-content">
+        <span class="overlay-icon">📸</span>
+        <h3>تجربه عکاسی</h3>
+      </div>
+      <div class="overlay-content">
+        <span class="overlay-icon">⚡</span>
+        <h3>سرعت بالا</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Feature Details Section -->
+<section class="feature-details">
+  <div class="container">
+    <h2 class="section-title">ویژگی‌های ما</h2>
+    <p class="section-subtitle">امکانات پیشرفته برای مدیریت عکس با کیفیت بالا</p>
+  </div>
+</section>
+
+<!-- Event-based Storage -->
+<section class="feature-section bg-light">
+  <div class="container">
+    <div class="feature-row">
+      <div class="feature-content">
+        <h2>ذخیره‌سازی عکس بر اساس رویداد</h2>
+        <p>عکس‌های رویدادهای مختلف را به صورت مجزا ذخیره کنید. هر رویداد دارای گالری اختصاصی با امکان دسته‌بندی و تگ‌گذاری پیشرفته است.</p>
+        <p>سیستم ما به شما این امکان را می‌دهد که تمامی عکس‌های یک رویداد را در یک مکان متمرکز نگهداری کرده و به راحتی مدیریت کنید.</p>
+        <a href="#" class="btn btn-primary">شروع کنید</a>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=400&fit=crop" alt="ذخیره‌سازی رویداد">
+        <div class="image-label">
+          <span>گالری رویداد</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Face Search -->
+<section class="feature-section">
+  <div class="container">
+    <div class="feature-row reverse">
+      <div class="feature-content">
+        <h2>جستجوی عکس با چهره</h2>
+        <p>با استفاده از فناوری پیشرفته تشخیص چهره، کافی است یک عکس از فرد مورد نظر آپلود کنید تا تمامی عکس‌هایی که آن فرد در آنها حضور دارد را مشاهده کنید.</p>
+        <p>سیستم ما با دقت بالا قادر به شناسایی چهره‌ها در زوایای مختلف و شرایط نوری متفاوت است.</p>
+        <a href="#" class="btn btn-primary">امتحان کنید</a>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&h=400&fit=crop" alt="جستجوی چهره">
+        <div class="image-label secondary">
+          <span>تشخیص هوشمند چهره</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Text & Number Search -->
+<section class="feature-section bg-light">
+  <div class="container">
+    <div class="feature-row">
+      <div class="feature-content">
+        <h2>جستجوی عکس با متن و شماره</h2>
+        <p>امکان جستجوی عکس‌ها بر اساس شماره بیب، شماره پلاک، متن روی لباس و سایر اطلاعات متنی موجود در تصاویر.</p>
+        <p>این قابلیت به ویژه برای رویدادهای ورزشی مانند ماراتن‌ها و مسابقات بسیار کاربردی است.</p>
+        <a href="#" class="btn btn-primary">کشف کنید</a>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.unsplash.com/photo-1532444458054-01a7dd3e9fca?w=600&h=400&fit=crop" alt="جستجو با متن">
+        <div class="image-label">
+          <span>شماره بیب: 14911</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Follow Us Section -->
+<section class="follow-section">
+  <div class="container">
+    <h2>ما را دنبال کنید</h2>
+    <p>آخرین اخبار و به‌روزرسانی‌ها را در شبکه‌های اجتماعی دنبال کنید</p>
+    
+    <div class="social-icons">
+      <a href="#" class="social-link facebook">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z"/>
+        </svg>
+      </a>
+      <a href="#" class="social-link instagram">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+        </svg>
+      </a>
+      <a href="#" class="social-link youtube">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="instagram-gallery">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=300&h=300&fit=crop" alt="گالری 1">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=300&h=300&fit=crop" alt="گالری 2">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=300&h=300&fit=crop" alt="گالری 3">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=300&h=300&fit=crop" alt="گالری 4">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <h2>آماده شروع هستید؟</h2>
+    <p>همین حالا ثبت‌نام کنید و از امکانات پیشرفته سامانه آی‌فوتو بهره‌مند شوید</p>
+    <a href="#" class="btn btn-primary btn-large">شروع کنید</a>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <h2>تماس با ما</h2>
+    <div class="contact-content">
+      <div class="contact-info">
+        <p>برای اطلاعات بیشتر و مشاوره با ما در ارتباط باشید</p>
+        <div class="contact-methods">
+          <div class="contact-item">
+            <span class="icon">📧</span>
+            <span>info&#64;ifoto.ir</span>
+          </div>
+          <div class="contact-item">
+            <span class="icon">📞</span>
+            <span>021-1234567</span>
+          </div>
+        </div>
+      </div>
+      <div class="qr-code">
+        <div class="qr-placeholder">
+            <img src="https://chart.googleapis.com/chart?cht=qr&chs=160x160&chl=http://ifoto.ir" alt="QR code" />
+          </div>
+          <p>اسکن کنید</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>آی‌فوتو</h3>
+        <p>سامانه هوشمند مدیریت عکس</p>
+      </div>
+      <div class="footer-column">
+        <h4>خدمات</h4>
+        <ul>
+          <li><a href="#">ذخیره‌سازی ابری</a></li>
+          <li><a href="#">تشخیص چهره</a></li>
+          <li><a href="#">مدیریت رویداد</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>شرکت</h4>
+        <ul>
+          <li><a href="#">درباره ما</a></li>
+          <li><a href="#">تماس با ما</a></li>
+          <li><a href="#">قوانین و مقررات</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>پشتیبانی</h4>
+        <ul>
+          <li><a href="#">راهنما</a></li>
+          <li><a href="#">سوالات متداول</a></li>
+          <li><a href="#">پشتیبانی آنلاین</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 آی‌فوتو. تمامی حقوق محفوظ است.</p>
+    </div>
+  </div>
+</footer>

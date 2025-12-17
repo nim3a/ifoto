@@ -1,0 +1,43 @@
+<header class="header">
+  <div class="container">
+    <nav class="navbar">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="/">
+          <img src="/assets/logo.svg" alt="آی‌فوتو" class="logo-img"/>
+        </a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <ul class="nav-menu">
+        <li *ngFor="let item of menuItems" class="nav-item">
+          <a [href]="item.link" class="nav-link">{{ item.label }}</a>
+        </li>
+      </ul>
+
+      <!-- CTA Button -->
+      <div class="nav-cta">
+        <a href="#" class="btn btn-primary">شروع کنید</a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" [class.active]="isMenuOpen">
+      <ul class="mobile-nav">
+        <li *ngFor="let item of menuItems" class="mobile-nav-item">
+          <a [href]="item.link" class="mobile-nav-link" (click)="toggleMenu()">{{ item.label }}</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#" class="btn btn-primary btn-mobile">شروع کنید</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
