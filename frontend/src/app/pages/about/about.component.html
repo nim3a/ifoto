@@ -1,0 +1,167 @@
+<!-- Header Navigation -->
+<app-header></app-header>
+
+<!-- Hero Section -->
+<section class="about-hero">
+  <div class="hero-overlay">
+    <div class="container">
+      <span class="hero-label">درباره ما</span>
+      <h1>سفر، ماموریت و ارزش‌های ما</h1>
+    </div>
+  </div>
+</section>
+
+<!-- Story Section -->
+<section class="story-section">
+  <div class="container">
+    <div class="story-content">
+      <div class="story-image">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="تیم ما">
+      </div>
+      <div class="story-text">
+        <span class="section-label">داستان ما</span>
+        <h2>متولد شده برای ساده‌سازی خاطرات عکس رویدادها</h2>
+        <p>آی‌فوتو از یک ایده ساده متولد شد: ساده‌سازی ذخیره‌سازی و اشتراک‌گذاری عکس‌های رویداد و تبدیل آن به تجربه‌ای لذت‌بخش. به عنوان یک شرکت نوآور در حوزه عکاسی، متوجه چالش‌هایی شدیم که مردم در سازماندهی و یافتن خاطرات عزیز خود با آن مواجه بودند.</p>
+        <p>بنابراین، آی‌فوتو برای پر کردن این شکاف با استفاده از فناوری پیشرفته و طراحی کاربرپسند ایجاد شد تا هر لحظه‌ای به یادماندنی باشد.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission Section -->
+<section class="mission-section">
+  <div class="container">
+    <div class="mission-content">
+      <span class="section-label-light">آی‌فوتو</span>
+      <h2>ماموریت ما</h2>
+      <p>ماموریت ما توانمندسازی افراد و سازمان‌ها برای حفظ خاطرات رویدادهای خود به صورت بی‌دردسر است. ما تلاش می‌کنیم یک پلتفرم قابل اعتماد، امن و قابل دسترس ارائه دهیم که مدیریت عکس، آپلود و جستجو را بدون دردسر برای هر لحظه‌ای در زندگی شما فراهم کند.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Vision Section -->
+<section class="vision-section">
+  <div class="container">
+    <div class="vision-content">
+      <div class="vision-text">
+        <span class="section-label">چشم‌انداز ما</span>
+        <h2>حفظ و دسترسی بی‌دردسر به خاطرات رویداد شما</h2>
+        <p>ما تصور می‌کنیم جهانی که در آن حافظه هر رویداد حفظ شده و به راحتی قابل دسترسی باشد. آی‌فوتو قصد دارد پلتفرمی برای ذخیره‌سازی عکس و پخش طبیعی باشد که مورد اعتماد کاربران در سراسر جهان است و با نیازهایی که دائماً در حال تغییر هستند، تکامل می‌یابد.</p>
+      </div>
+      <div class="vision-image">
+        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=600&h=400&fit=crop" alt="چشم‌انداز ما">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values Section -->
+<section class="values-section">
+  <div class="container">
+    <h2>ارزش‌های ما</h2>
+    <p class="values-subtitle">در آی‌فوتو، ما به طور مداوم اولویت می‌دهیم به نیازهای کاربران، امنیت بالا و تلاش برای تعالی در هر جنبه از خدمات ما.</p>
+    
+    <div class="values-grid">
+      <div class="value-card" *ngFor="let value of values">
+        <div class="value-icon">
+          <img [src]="value.icon" [alt]="value.title">
+        </div>
+        <h3>{{ value.title }}</h3>
+        <p>{{ value.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="memories-banner">
+  <div class="banner-track">
+    <div class="banner-item">
+      <span class="banner-icon">✨</span>
+      <span>بیایید خاطراتتان را ذخیره کنیم</span>
+    </div>
+    <div class="banner-item">
+      <span class="banner-icon">✨</span>
+      <span>بیایید خاطراتتان را ذخیره کنیم</span>
+    </div>
+    <div class="banner-item">
+      <span class="banner-icon">✨</span>
+      <span>بیایید خاطراتتان را ذخیره کنیم</span>
+    </div>
+    <div class="banner-item">
+      <span class="banner-icon">✨</span>
+      <span>بیایید خاطراتتان را ذخیره کنیم</span>
+    </div>
+  </div>
+</section>
+
+<!-- Follow Us Section -->
+<section class="follow-section">
+  <div class="container">
+    <h2>ما را دنبال کنید</h2>
+    <p>با آی‌فوتو در شبکه‌های اجتماعی همراه باشید تا از آخرین اخبار و به‌روزرسانی‌ها مطلع شوید. رویدادهای جذاب و نکاتی را از سراسر جهان به اشتراک نگذارید. نگاه کنید به عکس‌های الهام‌بخش، نکات عکاسی و برجسته‌هایی از جدیدترین رویدادهای هیجان‌انگیز که با ما به اشتراک می‌گذاریم.</p>
+    
+    <div class="social-icons">
+      <a href="#" class="social-link facebook" aria-label="فیسبوک">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z"/>
+        </svg>
+      </a>
+      <a href="#" class="social-link instagram" aria-label="اینستاگرام">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+        </svg>
+      </a>
+      <a href="#" class="social-link youtube" aria-label="یوتیوب">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-column">
+        <div class="footer-logo">
+          <img src="/assets/logo.svg" alt="آی‌فوتو" class="footer-logo-img">
+        </div>
+        <div class="footer-social">
+          <a href="#" aria-label="فیسبوک"><i class="icon-facebook"></i></a>
+          <a href="#" aria-label="اینستاگرام"><i class="icon-instagram"></i></a>
+          <a href="#" aria-label="یوتیوب"><i class="icon-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h4>درباره ما</h4>
+        <ul>
+          <li><a href="#">داستان ما</a></li>
+          <li><a href="#contact">تماس با ما</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>پیدا کردن عکس</h4>
+        <ul>
+          <li><a href="#">مرکز راهنما</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>پشتیبانی مشتری</h4>
+        <ul>
+          <li><a href="#">support&#64;ifoto.ir</a></li>
+          <li><a href="#">+989xxxxxxxxx</a></li>
+        </ul>
+        <div class="footer-qr">
+          <img src="https://chart.googleapis.com/chart?cht=qr&chs=80x80&chl=http://ifoto.ir" alt="QR کد">
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>کپی‌رایت © 2025 آی‌فوتو. تمامی حقوق محفوظ است.</p>
+      <a href="#" class="footer-link">همه سیاست‌ها</a>
+    </div>
+  </div>
+</footer>

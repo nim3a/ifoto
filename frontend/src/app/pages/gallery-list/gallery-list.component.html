@@ -1,0 +1,121 @@
+<app-header></app-header>
+
+<main class="gallery-list-page">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">گالری‌های تصاویر</h1>
+      <p class="hero-subtitle">مجموعه‌های زیبا از رویدادهای مختلف را مشاهده کنید</p>
+    </div>
+  </section>
+
+  <!-- Loading State -->
+  <section class="galleries-section" *ngIf="isLoading">
+    <div class="container">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>در حال بارگذاری...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Error State -->
+  <section class="galleries-section" *ngIf="error && !isLoading">
+    <div class="container">
+      <div class="error">
+        <p>{{ error }}</p>
+        <button class="btn btn-primary" (click)="loadGalleries()">تلاش مجدد</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Empty State -->
+  <section class="galleries-section" *ngIf="!isLoading && !error && galleries.length === 0">
+    <div class="container">
+      <div class="empty">
+        <p>هیچ گالری‌ای یافت نشد.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galleries Grid -->
+  <section class="galleries-section" *ngIf="!isLoading && !error && galleries.length > 0">
+    <div class="container">
+      <div class="galleries-grid">
+        <a *ngFor="let gallery of galleries" 
+           [routerLink]="['/gallery', gallery.id]"
+           class="gallery-card">
+          <div class="gallery-image">
+            <img [src]="gallery.coverImageUrl" 
+                 [alt]="gallery.title"
+                 loading="lazy">
+            <div class="gallery-overlay">
+              <span class="photo-count">{{ gallery.photoCount }} عکس</span>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3 class="gallery-title">{{ gallery.title }}</h3>
+            <p class="gallery-date" *ngIf="gallery.eventDate">{{ gallery.eventDate | date: 'dd MMMM yyyy' }}</p>
+            <p class="gallery-location" *ngIf="gallery.location">{{ gallery.location }}</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" *ngIf="totalPages > 1">
+        <button 
+          class="pagination-btn"
+          [disabled]="currentPage === 1"
+          (click)="onPageChange(currentPage - 1)">
+          قبلی
+        </button>
+        
+        <div class="pagination-numbers">
+          <button 
+            *ngFor="let page of pages"
+            class="pagination-number"
+            [class.active]="page === currentPage"
+            (click)="onPageChange(page)">
+            {{ page }}
+          </button>
+        </div>
+
+        <button 
+          class="pagination-btn"
+          [disabled]="currentPage === totalPages"
+          (click)="onPageChange(currentPage + 1)">
+          بعدی
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>درباره آی‌فوتو</h4>
+          <p>پلتفرم هوشمند برای مدیریت و اشتراک‌گذاری تصاویر رویدادها</p>
+        </div>
+        <div class="footer-section">
+          <h4>لینک‌های مفید</h4>
+          <ul>
+            <li><a routerLink="/">خانه</a></li>
+            <li><a routerLink="/about">درباره ما</a></li>
+            <li><a routerLink="/gallery">گالری</a></li>
+            <li><a routerLink="/find-photo">پیدا کردن عکس</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>تماس با ما</h4>
+          <p>ایمیل: info&#64;ifoto.ir</p>
+          <p>تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; ۱۴۰۳ آی‌فوتو. تمامی حقوق محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+</main>

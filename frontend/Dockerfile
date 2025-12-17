@@ -6,14 +6,18 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci
+# Ensure esbuild installs platform-appropriate binary (Linux x64) inside image
+ENV npm_config_platform=linux
+ENV npm_config_arch=x64
+
+# Install dependencies (include dev dependencies so Angular CLI is available)
+RUN npm ci --include=dev --unsafe-perm
 
 # Copy source code
 COPY . .
 
-# Build the application
-RUN npm run build
+# Build the application using npx to ensure Angular CLI runs inside container
+RUN npx --yes @angular/cli@17 build --configuration production
 
 # Runtime stage with Nginx
 FROM nginx:alpine

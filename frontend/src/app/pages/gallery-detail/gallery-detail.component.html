@@ -1,0 +1,129 @@
+<app-header></app-header>
+
+<main class="gallery-detail-page">
+  <!-- Loading State -->
+  <section class="content-section" *ngIf="isLoading">
+    <div class="container">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>در حال بارگذاری...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Error State -->
+  <section class="content-section" *ngIf="error && !isLoading">
+    <div class="container">
+      <div class="error">
+        <p>{{ error }}</p>
+        <button class="btn btn-primary" (click)="goBack()">بازگشت به گالری‌ها</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Content -->
+  <div *ngIf="!isLoading && !error && gallery">
+    <!-- Gallery Header -->
+    <section class="gallery-header">
+      <div class="container">
+        <button class="back-btn" (click)="goBack()">
+          <span>←</span>
+          بازگشت به گالری‌ها
+        </button>
+        <h1 class="gallery-title">{{ gallery.title }}</h1>
+        <div class="gallery-meta">
+          <span class="meta-item" *ngIf="gallery.eventDate">
+            📅 {{ gallery.eventDate | date: 'dd MMMM yyyy' }}
+          </span>
+          <span class="meta-item" *ngIf="gallery.location">
+            📍 {{ gallery.location }}
+          </span>
+            <span class="meta-item">
+            📷 {{ gallery?.photos?.length }} عکس
+          </span>
+        </div>
+        <p class="gallery-description" *ngIf="gallery.description">
+          {{ gallery.description }}
+        </p>
+      </div>
+    </section>
+
+    <!-- Photos Grid -->
+    <section class="photos-section">
+      <div class="container">
+        <div class="photos-grid">
+          <div *ngFor="let photo of gallery.photos; let i = index" 
+               class="photo-item"
+               (click)="openLightbox(photo, i)">
+            <img [src]="photo.thumbnailUrl" 
+                 [alt]="photo.fileName"
+                 loading="lazy">
+            <div class="photo-overlay">
+              <span class="view-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" *ngIf="selectedPhoto" (click)="closeLightbox()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button class="lightbox-close" (click)="closeLightbox()">×</button>
+      
+      <button class="lightbox-nav lightbox-prev" 
+              (click)="previousPhoto()"
+              [disabled]="selectedPhotoIndex === 0">
+        ←
+      </button>
+
+      <div class="lightbox-image-container">
+        <img [src]="selectedPhoto.url" [alt]="selectedPhoto.fileName">
+        <div class="lightbox-info">
+          <p class="photo-counter">
+            {{ selectedPhotoIndex + 1 }} / {{ gallery?.photos?.length ?? 0 }}
+          </p>
+          <p class="photo-date" *ngIf="selectedPhoto.capturedAt">
+            {{ selectedPhoto.capturedAt | date: 'dd MMMM yyyy - HH:mm' }}
+          </p>
+        </div>
+      </div>
+
+            <button class="lightbox-nav lightbox-next" 
+              (click)="nextPhoto()"
+              [disabled]="selectedPhotoIndex === (gallery?.photos?.length ?? 0) - 1">
+        →
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>درباره آی‌فوتو</h4>
+          <p>پلتفرم هوشمند برای مدیریت و اشتراک‌گذاری تصاویر رویدادها</p>
+        </div>
+        <div class="footer-section">
+          <h4>لینک‌های مفید</h4>
+          <ul>
+            <li><a routerLink="/">خانه</a></li>
+            <li><a routerLink="/about">درباره ما</a></li>
+            <li><a routerLink="/gallery">گالری</a></li>
+            <li><a routerLink="/find-photo">پیدا کردن عکس</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>تماس با ما</h4>
+          <p>ایمیل: info&#64;ifoto.ir</p>
+          <p>تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; ۱۴۰۳ آی‌فوتو. تمامی حقوق محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+</main>
