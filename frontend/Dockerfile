@@ -16,8 +16,8 @@ RUN npm ci --include=dev --unsafe-perm
 # Copy source code
 COPY . .
 
-# Build the application using npx to ensure Angular CLI runs inside container
-RUN npx --yes @angular/cli@17 build --configuration production
+# Build the application - use npx with local package instead of registry
+RUN npx --package @angular/cli ng build --configuration production
 
 # Runtime stage with Nginx
 FROM nginx:alpine
